@@ -2,6 +2,8 @@
 
 This is for repurposing the RX8 satelite navigation to run engine parameters on a Raspberry PI.
 
+This is a huge job. It will take you a fair while and requires some skill. If you're not confortable tinkering on things and writing basic code, this task probably isn't for you.
+
 ## What you need to do
 
 You'll need the following equipment:
