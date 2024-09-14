@@ -18,7 +18,13 @@ In my case, my RX8 did not have a satelite navigation system installed so, I bou
 
 Here's some instructions I found on doing that: https://newscrewdriver.com/2023/08/06/removing-navigation-lcd-assembly-from-2004-mazda-rx-8/
 
-## Booting up in Kiosk Mode
+## Booting up the Rasberry PI in Kiosk Mode
 
 The easiest example I found so far: https://core-electronics.com.au/guides/raspberry-pi-kiosk-mode-setup/#V1Y5SSB using Wayland config.
+
+## Fitting a new screen
+
+I've seen some other guides recommend hot gluing a tablet or screen in place of the old one. I don't think hot glue will hold through the extreme heat cycles inside a car, the vibrations and pushing on it with your finger. 
+
+The best way to fit a replacement screen is to reuse the metal brackets that mount the old screen. Thankfully, the old screen seems to be a standard 16:9 and a new screen (without a cover) should be an easy fit. 
 
