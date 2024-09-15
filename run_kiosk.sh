@@ -4,7 +4,7 @@ echo "Starting Venv" >> ~/server.log
 source ~/.venv/rx8/bin/activate
 
 echo "Starting the server" >> ~/server.log
-python3 -m http.server 8080 >> ~/server.log 2>&1 &
+python3 ~/rx8/app.py >> ~/server.log 2>&1 &
 
 # Wait for the server to start
 TIMEOUT=30
