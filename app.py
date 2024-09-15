@@ -10,15 +10,18 @@ logging.basicConfig(filename='app.log', level=logging.INFO, format='%(asctime)s 
 app = Flask(__name__)
 
 
-# Connect to the OBD port
-connection = obd.OBD("/dev/rfcomm0")
+try:
+    connection = obd.OBD("/dev/rfcomm0")  # You can also leave it empty for auto-detection
+except Exception as e:
+    logging.error(f"Failed to connect to OBD-II adapter: {e}")
+    connection = None  # Set connection to None if it fails
 
 
 @app.route('/')
 def index():
     logging.warning("Request happens")
 
-    if connection.status() == obd.OBDStatus.NOT_CONNECTED:
+    if connection is None or connection.status() == obd.OBDStatus.NOT_CONNECTED:
         # Log that the OBD connection failed
         logging.warning("No OBD connection")
         temp_water_value = "No OBD connection"
