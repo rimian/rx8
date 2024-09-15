@@ -21,7 +21,7 @@ def index():
     if connection.status() == obd.OBDStatus.NOT_CONNECTED:
         # Log that the OBD connection failed
         logging.warning("No OBD connection")
-        temp_water = "No OBD connection"
+        temp_water_value = "No OBD connection"
     else:
         cmd = obd.commands.COOLANT_TEMP
         response = connection.query(cmd)
