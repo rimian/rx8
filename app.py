@@ -11,6 +11,10 @@ connection = obd.OBD()
 
 @app.route('/')
 def index():
+    if connection.status() == obd.OBDStatus.NOT_CONNECTED:
+        # Gracefully handle the case where there's no connection to OBD
+        return render_template('index.html', temp_water="No OBD connection")
+
     cmd = obd.commands.COOLANT_TEMP
     response = connection.query(cmd)
 
