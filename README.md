@@ -2,7 +2,7 @@
 
 This is for repurposing the RX8 satelite navigation to run engine parameters on a Raspberry PI.
 
-This is a huge job. It will take you a fair while and requires some skill. If you're not confortable tinkering on things and writing basic code, this task probably isn't for you.
+This is a huge job. Make yourself a coffee!
 
 ## What you need to do
 
@@ -17,6 +17,12 @@ You'll need the following equipment:
 ```
 sudo apt-get install netcat-openbsd
 ```
+
+## Installation
+
+* SSH into your Raspberry PI.
+* In the home directory checkout this repo.
+* Add the auto start section of wayfire.ini to your config
 
 ## Pulling things apart
 
