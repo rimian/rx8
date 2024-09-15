@@ -1,7 +1,9 @@
 #!/bin/sh
 
 echo "Starting Venv" >> ~/server.log
+echo "Running as user: $(whoami)" >> ~/server.log
 source ~/.venv/rx8/bin/activate
+echo "Using Python: $(which python)" >> ~/server.log
 
 echo "Starting the server" >> ~/server.log
 python3 ~/rx8/app.py >> ~/server.log 2>&1 &
