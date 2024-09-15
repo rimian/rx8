@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 
 # Connect to the OBD port
-connection = obd.OBD()
+connection = obd.OBD("/dev/rfcomm0")
 
 
 @app.route('/')
