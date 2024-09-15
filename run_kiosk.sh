@@ -6,7 +6,7 @@ source /home/pi/.venv/rx8/bin/activate
 echo "Using Python: $(which python)" >> ~/server.log
 
 echo "Starting the server" >> ~/server.log
-python3 ~/rx8/app.py >> ~/server.log 2>&1 &
+/home/pi/.venv/rx8/bin/python3 ~/rx8/app.py >> ~/server.log 2>&1 &
 
 # Wait for the server to start
 TIMEOUT=30
