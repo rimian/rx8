@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Start the Python web server in the background and log errors
+echo "Starting the server" > ~/server.log
 python3 -m http.server 8080 > ~/server.log 2>&1 &
 
 # Wait for the server to start
@@ -20,5 +20,5 @@ while ! nc -z localhost 8080; do
   sleep 1
 done
 
-# Start Chromium in kiosk mode and log errors (fixed URL typo)
+echo "Starting Chrome" > ~/chromium.log
 /bin/chromium-browser --kiosk --ozone-platform=wayland --start-maximized http://localhost:8080 > ~/chromium.log 2>&1 &
