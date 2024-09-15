@@ -17,28 +17,41 @@ except Exception as e:
     connection = None  # Set connection to None if it fails
 
 
+last_obd_data = None
+last_query_time = 0
+QUERY_INTERVAL = 10  # Query every 10 seconds
+
+
 @app.route('/')
 def index():
-    logging.warning("Request happens")
+    global last_obd_data, last_query_time
+
+    current_time = time.time()
 
     if connection is None or connection.status() == obd.OBDStatus.NOT_CONNECTED:
-        # Log that the OBD connection failed
         logging.warning("No OBD connection")
         temp_water_value = "No OBD connection"
     else:
-        cmd = obd.commands.COOLANT_TEMP
-        response = connection.query(cmd)
+        if current_time - last_query_time > QUERY_INTERVAL:
+            # Query the OBD adapter only every 10 seconds
+            cmd = obd.commands.COOLANT_TEMP
+            response = connection.query(cmd)
 
-        if response.is_null():
-            temp_water_value = "No Data (Car Off)"
-            # Log that the data could not be retrieved
-            logging.warning("No data available from OBD (Car Off)")
-        else:
-            temp_water_value = response.value
-            # Log successful data retrieval
-            logging.info(f"Coolant temperature retrieved: {temp_water_value}")
+            if response.is_null():
+                last_obd_data = "No Data (Car Off)"
+                logging.warning("No data available from OBD (Car Off)")
+            else:
+                last_obd_data = response.value
+                logging.info(f"Coolant temperature retrieved: {last_obd_data}")
+            last_query_time = current_time
 
-    return render_template('./index.html', temp_water=temp_water_value)
+        temp_water_value = last_obd_data
+
+    return render_template(
+        'index.html',
+        temp_water=temp_water_value,
+        current_time=current_time
+    )
 
 
 if __name__ == '__main__':
