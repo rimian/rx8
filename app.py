@@ -13,15 +13,15 @@ connection = obd.OBD()
 def index():
     if connection.status() == obd.OBDStatus.NOT_CONNECTED:
         # Gracefully handle the case where there's no connection to OBD
-        return render_template('index.html', temp_water="No OBD connection")
-
-    cmd = obd.commands.COOLANT_TEMP
-    response = connection.query(cmd)
-
-    if response.is_null():
-        temp_water_value = "No Data (Car Off)"
+        temp_water="No OBD connection
     else:
-        temp_water_value = response.value
+        cmd = obd.commands.COOLANT_TEMP
+        response = connection.query(cmd)
+
+        if response.is_null():
+            temp_water_value = "No Data (Car Off)"
+        else:
+            temp_water_value = response.value
 
     return render_template('./index.html', temp_water=temp_water_value)
 
