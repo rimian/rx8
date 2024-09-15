@@ -13,7 +13,7 @@ connection = obd.OBD()
 def index():
     if connection.status() == obd.OBDStatus.NOT_CONNECTED:
         # Gracefully handle the case where there's no connection to OBD
-        temp_water="No OBD connection
+        temp_water="No OBD connection"
     else:
         cmd = obd.commands.COOLANT_TEMP
         response = connection.query(cmd)
