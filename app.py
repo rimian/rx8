@@ -15,6 +15,7 @@ app = Flask(__name__)
 
 
 try:
+    logging.info("Connecting...")
     connection = obd.OBD("/dev/rfcomm0")  # You can also leave it empty for auto-detection
 except Exception as e:
     logging.error(f"Failed to connect to OBD-II adapter: {e}")
