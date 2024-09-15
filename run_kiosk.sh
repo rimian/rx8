@@ -8,10 +8,14 @@ echo "Using Python: $(which python)" >> ~/server.log
 echo "Starting the server" >> ~/server.log
 /home/pi/.venv/rx8/bin/python3 ~/rx8/app.py >> ~/server.log 2>&1 &
 
+
 # Wait for the server to start
 TIMEOUT=30
+PORT=5000
+URL="http://127.0.0.1:$PORT"
 
-while ! nc -z localhost 5000; do
+
+while ! nc -z localhost $PORT; do
   TIMEOUT=$((TIMEOUT - 1))
 
   if [ $TIMEOUT -le 0 ]; then
@@ -26,4 +30,4 @@ while ! nc -z localhost 5000; do
 done
 
 echo "Starting Chrome" >> ~/chromium.log
-/bin/chromium-browser --kiosk --ozone-platform=wayland --start-maximized http://127.0.0.1:5000 >> ~/chromium.log 2>&1 &
+/bin/chromium-browser --kiosk --ozone-platform=wayland --start-maximized $URL >> ~/chromium.log 2>&1 &
