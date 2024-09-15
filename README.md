@@ -15,7 +15,7 @@ You'll need the following equipment:
 ## Required packages
 
 ```
-sudo apt-get install netcat
+sudo apt-get install netcat-openbsd
 ```
 
 ## Pulling things apart
