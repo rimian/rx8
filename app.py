@@ -19,7 +19,7 @@ def index():
     else:
         temp_water_value = response.value
 
-    return render_template('index.html', temp_water=temp_water_value)
+    return render_template('./index.html', temp_water=temp_water_value)
 
 
 if __name__ == '__main__':
