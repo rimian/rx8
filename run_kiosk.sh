@@ -1,7 +1,10 @@
 #!/bin/sh
 
-echo "Starting the server" > ~/server.log
-python3 -m http.server 8080 > ~/server.log 2>&1 &
+echo "Starting Venv" >> ~/server.log
+source ~/.venv/rx8/bin/activate
+
+echo "Starting the server" >> ~/server.log
+python3 -m http.server 8080 >> ~/server.log 2>&1 &
 
 # Wait for the server to start
 TIMEOUT=30
@@ -20,5 +23,5 @@ while ! nc -z localhost 8080; do
   sleep 1
 done
 
-echo "Starting Chrome" > ~/chromium.log
-/bin/chromium-browser --kiosk --ozone-platform=wayland --start-maximized http://localhost:8080 > ~/chromium.log 2>&1 &
+echo "Starting Chrome" >> ~/chromium.log
+/bin/chromium-browser --kiosk --ozone-platform=wayland --start-maximized http://localhost:8080 >> ~/chromium.log 2>&1 &
