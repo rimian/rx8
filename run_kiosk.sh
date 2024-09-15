@@ -11,7 +11,7 @@ echo "Starting the server" >> ~/server.log
 # Wait for the server to start
 TIMEOUT=30
 
-while ! nc -z localhost 8080; do
+while ! nc -z localhost 5000; do
   TIMEOUT=$((TIMEOUT - 1))
 
   if [ $TIMEOUT -le 0 ]; then
