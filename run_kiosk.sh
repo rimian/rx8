@@ -2,7 +2,7 @@
 
 echo "Starting Venv" >> ~/server.log
 echo "Running as user: $(whoami)" >> ~/server.log
-source ~/.venv/rx8/bin/activate
+source /home/pi/.venv/rx8/bin/activate
 echo "Using Python: $(which python)" >> ~/server.log
 
 echo "Starting the server" >> ~/server.log
