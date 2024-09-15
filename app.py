@@ -16,6 +16,8 @@ connection = obd.OBD()
 
 @app.route('/')
 def index():
+    logging.warning("Request happens")
+
     if connection.status() == obd.OBDStatus.NOT_CONNECTED:
         # Log that the OBD connection failed
         logging.warning("No OBD connection")
