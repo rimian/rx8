@@ -26,4 +26,4 @@ while ! nc -z localhost 8080; do
 done
 
 echo "Starting Chrome" >> ~/chromium.log
-/bin/chromium-browser --kiosk --ozone-platform=wayland --start-maximized http://localhost:8080 >> ~/chromium.log 2>&1 &
+/bin/chromium-browser --kiosk --ozone-platform=wayland --start-maximized http://localhost:5000 >> ~/chromium.log 2>&1 &
