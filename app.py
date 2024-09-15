@@ -1,3 +1,4 @@
+import time
 from flask import Flask, render_template
 import obd
 import logging
