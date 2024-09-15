@@ -8,11 +8,15 @@ TIMEOUT=30
 
 while ! nc -z localhost 8080; do
   TIMEOUT=$((TIMEOUT - 1))
+
   if [ $TIMEOUT -le 0 ]; then
     echo "Server did not start within the expected time" >> ~/server.log
+
     exit 1
   fi
-  echo "Waiting for the server to start..."
+
+  echo "Waiting for the server to start..." >> ~/server.log
+
   sleep 1
 done
 
