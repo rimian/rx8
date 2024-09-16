@@ -22,7 +22,7 @@ except Exception as e:
     connection = None
 
 
-if connection is not None
+if connection is not None:
     try:
         logging.info("Starting...")
         connection.watch(obd.commands.COOLANT_TEMP)
