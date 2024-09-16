@@ -19,11 +19,15 @@ try:
     connection = obd.Async("/dev/rfcomm0")  # You can also leave it empty for auto-detection
 except Exception as e:
     logging.error(f"Failed to connect to OBD-II adapter: {e}")
-    connection = None  # Set connection to None if it fails
+    connection = None
 
 
-connection.watch(obd.commands.COOLANT_TEMP)
-connection.start()
+try:
+    connection.watch(obd.commands.COOLANT_TEMP)
+    connection.start()
+except Exception as e:
+    logging.error(f"Could not start OBDII: {e}")
+    connection = None
 
 
 @app.route('/')
