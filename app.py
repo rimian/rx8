@@ -5,7 +5,7 @@ import logging
 
 
 logging.basicConfig(
-    filename='app.log',
+    filename='rx8/logs/app.log',
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
