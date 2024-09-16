@@ -22,12 +22,13 @@ except Exception as e:
     connection = None
 
 
-try:
-    connection.watch(obd.commands.COOLANT_TEMP)
-    connection.start()
-except Exception as e:
-    logging.error(f"Could not start OBDII: {e}")
-    connection = None
+if connection is not None
+    try:
+        connection.watch(obd.commands.COOLANT_TEMP)
+        connection.start()
+    except Exception as e:
+        logging.error(f"Could not start OBDII: {e}")
+        connection = None
 
 
 @app.route('/')
