@@ -40,3 +40,7 @@ I've seen some other guides recommend hot gluing a tablet or screen in place of 
 
 The best way to fit a replacement screen is to reuse the metal brackets that mount the old screen. Thankfully, the old screen seems to be a standard 16:9 and a new screen (without a cover) should be an easy fit.
 
+## Connecting
+
+```sudo rfcomm```
+

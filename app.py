@@ -42,7 +42,12 @@ def index():
         temp_water_value = "No OBDII connection"
     else:
         refresh=3
-        temp_water_value = connection.query(obd.commands.COOLANT_TEMP)
+
+        # Check if the response is valid and contains data
+        if response.is_null():
+            temp_water_value = "No Data (Car Off)"
+        else:
+            temp_water_value = response.value  # Extract the actual value
 
     return render_template(
         'index.html',
