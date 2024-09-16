@@ -35,13 +35,16 @@ def index():
     current_time = time.time()
 
     if connection is None or connection.status() == obd.OBDStatus.NOT_CONNECTED:
+        refresh=60
         logging.warning("No OBDII connection")
         temp_water_value = "No OBDII connection"
     else:
+        refresh=3
         temp_water_value = connection.query(obd.commands.COOLANT_TEMP)
 
     return render_template(
         'index.html',
+        refresh=refresh,
         temp_water=temp_water_value,
         current_time=current_time
     )
