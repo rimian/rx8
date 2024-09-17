@@ -15,13 +15,6 @@ logging.basicConfig(
 obd.logger.setLevel(obd.logging.DEBUG)
 
 
-# Initialize the OBD connection
-connection = obd.OBD("/dev/ttys011", baudrate=38400)  # Adjust port and baudrate as needed
-
-
-app = Flask(__name__)
-
-
 try:
     logging.info("Connecting...")
     connection = obd.Async("/dev/rfcomm0")  # You can also leave it empty for auto-detection
@@ -38,6 +31,9 @@ if connection is not None:
     except Exception as e:
         logging.error(f"Could not start OBDII: {e}")
         connection = None
+
+
+app = Flask(__name__)
 
 
 @app.route('/')
