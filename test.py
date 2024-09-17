@@ -2,25 +2,18 @@ import obd
 import time
 import logging
 
-# Enable logging
-logging.basicConfig(level=logging.DEBUG)
 
-connection = obd.Async("/dev/rfcomm0")
+# Set up logging to file
+logging.basicConfig(
+    filename='obd_debug.log',
+    level=logging.DEBUG,  # Log everything
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 
-# a callback that prints every new value to the console
-def new_rpm(r):
-    if not r.is_null():
-        print(f"{r.value} {r.unit}")
-    else:
-        print("No data")
 
-# Watch the RPM command
-connection.watch(obd.commands.RPM, callback=new_rpm)
-connection.start()
+# Enable OBD logger
+obd.logger.setLevel(obd.logging.DEBUG)
 
-# Check the connection status periodically
-for _ in range(60):  # Run for 60 seconds
-    print(f"Connection Status: {connection.status()}")
-    time.sleep(1)
 
-connection.stop()
+connection = obd.OBD("/dev/ttys011", baudrate=38400)
+time.sleep(0.5)  # small delay between commands

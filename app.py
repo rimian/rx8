@@ -6,9 +6,17 @@ import logging
 
 logging.basicConfig(
     filename='rx8/logs/app.log',
-    level=logging.INFO,
+    level=logging.DEBUG,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
+
+
+# Enable OBD logger
+obd.logger.setLevel(obd.logging.DEBUG)
+
+
+# Initialize the OBD connection
+connection = obd.OBD("/dev/ttys011", baudrate=38400)  # Adjust port and baudrate as needed
 
 
 app = Flask(__name__)
