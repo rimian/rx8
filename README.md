@@ -46,8 +46,8 @@ kiosk = /home/pi/rx8/run_kiosk.sh
 ## Adding the services
 
 ```
-cp obd2-bind.service /etc/systemd/system/obd2-bind.service
-cp kiosk-server.service /etc/systemd/system/kiosk-server.service
+sudo cp obd2-bind.service /etc/systemd/system/obd2-bind.service
+sudo cp kiosk-server.service /etc/systemd/system/kiosk-server.service
 ```
 
 You'll need to edit those services if your path and username are different.
