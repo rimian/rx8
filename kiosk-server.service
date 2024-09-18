@@ -1,0 +1,15 @@
+[Unit]
+Description=RX8 Python OBD-II Flask Service
+After=network.target
+
+[Service]
+ExecStart=/home/pi/.venv/rx8/bin/python3 /home/pi/rx8/app.py
+WorkingDirectory=/home/pi/rx8
+StandardOutput=append:/home/pi/rx8/logs/server.log
+StandardError=append:/home/pi/rx8/logs/server.log
+Restart=always
+User=pi
+Environment="PYTHONUNBUFFERED=1"
+
+[Install]
+WantedBy=multi-user.target
