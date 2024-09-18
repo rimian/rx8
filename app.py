@@ -4,8 +4,11 @@ import obd
 import logging
 
 
+# Get the absolute path for the log file
+log_file = '/home/pi/rx8/logs/app.log'
+
 logging.basicConfig(
-    filename='rx8/logs/app.log',
+    filename=log_file,
     level=logging.DEBUG,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
@@ -42,6 +45,7 @@ if connection is not None:
         logging.error(f"Could not start OBDII: {e}")
         connection = None
 
+# Flask-related code is commented out for now
 
 
 # app = Flask(__name__)
