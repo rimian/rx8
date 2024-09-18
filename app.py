@@ -16,34 +16,22 @@ logging.basicConfig(
 
 # Enable OBD logger
 obd.logger.setLevel(obd.logging.DEBUG)
+connection = obd.Async("/dev/rfcomm0")  # You can also leave it empty for auto-detection
 
 
-try:
-    logging.info("Connecting...")
-    connection = obd.Async("/dev/rfcomm0")  # You can also leave it empty for auto-detection
-except Exception as e:
-    logging.error(f"Failed to connect to OBD-II adapter: {e}")
-    connection = None
+# a callback that prints every new value to the console
+def new_temp(r):
+    print (r.value)
+
+connection.watch(obd.commands.COOLANT_TEMP, callback=new_temp)
+connection.start()
+
+# the callback will now be fired upon receipt of new values
+
+time.sleep(60)
+connection.stop()
 
 
-if connection is not None:
-    try:
-        logging.info("Starting...")
-        connection.watch(obd.commands.COOLANT_TEMP)
-        connection.start()
-
-        # Query the coolant temperature and log the result
-        response = connection.query(obd.commands.COOLANT_TEMP)
-        if response.is_null():
-            logging.warning("No data received (Car off or no OBD connection)")
-        else:
-            logging.info(f"Coolant temperature: {response.value}")
-
-        connection.stop()
-
-    except Exception as e:
-        logging.error(f"Could not start OBDII: {e}")
-        connection = None
 
 # Flask-related code is commented out for now
 
