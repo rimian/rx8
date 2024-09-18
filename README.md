@@ -34,6 +34,13 @@ Here's some instructions I found on doing that: https://newscrewdriver.com/2023/
 
 The easiest example I found so far: https://core-electronics.com.au/guides/raspberry-pi-kiosk-mode-setup/#V1Y5SSB using Wayland config.
 
+To get the display to be full screen, you need to boot the app in kiosk mode. I got this working with wayland. Add this to wayfire.ini
+
+[autostart]
+screensaver = false
+dpms = false
+kiosk = /home/pi/rx8/run_kiosk.sh
+
 ## Fitting a new screen
 
 I've seen some other guides recommend hot gluing a tablet or screen in place of the old one. I don't think hot glue will hold through the extreme heat cycles inside a car, the vibrations and pushing on it with your finger.
