@@ -64,4 +64,4 @@ def index():
 
 if __name__ == '__main__':
     logging.info("Starting server")
-    app.run(debug=True)
+    app.run(debug=False)
