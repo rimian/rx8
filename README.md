@@ -42,6 +42,26 @@ screensaver = false
 dpms = false
 kiosk = /home/pi/rx8/run_kiosk.sh
 ```
+
+## Adding the services
+
+```
+cp obd2-bind.service /etc/systemd/system/obd2-bind.service
+cp kiosk-server.service /etc/systemd/system/kiosk-server.service
+```
+
+You'll need to edit those services if your path and username are different.
+
+Start:
+
+````
+sudo systemctl daemon-reload
+sudo systemctl enable obd2-bind.service
+sudo systemctl enable kiosk-server.service
+sudo systemctl start obd2-bind.service
+sudo systemctl start kiosk-server.service
+```
+
 ## Fitting a new screen
 
 I've seen some other guides recommend hot gluing a tablet or screen in place of the old one. I don't think hot glue will hold through the extreme heat cycles inside a car, the vibrations and pushing on it with your finger.
