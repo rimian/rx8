@@ -34,7 +34,7 @@ Here's some instructions I found on doing that: https://newscrewdriver.com/2023/
 
 The easiest example I found so far: https://core-electronics.com.au/guides/raspberry-pi-kiosk-mode-setup/#V1Y5SSB using Wayland config.
 
-To get the display to be full screen, you need to boot the app in kiosk mode. I got this working with wayland. Add this to wayfire.ini
+To get the display to be full screen, you need to boot the app in kiosk mode. I got this working with wayland. Add this to .config/wayfire.ini
 
 ```
 [autostart]
