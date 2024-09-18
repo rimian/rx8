@@ -29,14 +29,18 @@ if connection is not None:
         connection.watch(obd.commands.COOLANT_TEMP)
         connection.start()
 
-        connection.query(obd.commands.COOLANT_TEMP)
+        # Query the coolant temperature and log the result
+        response = connection.query(obd.commands.COOLANT_TEMP)
+        if response.is_null():
+            logging.warning("No data received (Car off or no OBD connection)")
+        else:
+            logging.info(f"Coolant temperature: {response.value}")
 
         connection.stop()
 
     except Exception as e:
         logging.error(f"Could not start OBDII: {e}")
         connection = None
-
 
 
 
