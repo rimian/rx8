@@ -10,16 +10,10 @@ log_file = os.getenv('LOG_FILE', '/home/pi/rx8/logs/app.log')
 port = os.getenv('OBD_PORT', None)
 
 
-logging.basicConfig(
-    filename=log_file,
-    level=logging.DEBUG,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
-
-
-# Enable OBD logger
 obd.logger.setLevel(obd.logging.DEBUG)
-connection = obd.Async(port)  # You can also leave it empty for auto-detection
+
+
+connection = obd.Async(port)
 
 
 # a callback that prints every new value to the console
