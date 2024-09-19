@@ -1,11 +1,14 @@
 import time
-# from flask import Flask, render_template
 import obd
 import logging
+import os
+from dotenv import load_dotenv
 
 
-# Get the absolute path for the log file
-log_file = '/home/pi/rx8/logs/app.log'
+load_dotenv()
+log_file = os.getenv('LOG_FILE', '/home/pi/rx8/logs/app.log')
+port = os.getenv('OBD_PORT', None)
+
 
 logging.basicConfig(
     filename=log_file,
@@ -16,12 +19,13 @@ logging.basicConfig(
 
 # Enable OBD logger
 obd.logger.setLevel(obd.logging.DEBUG)
-connection = obd.Async("/dev/rfcomm0")  # You can also leave it empty for auto-detection
+connection = obd.Async(port)  # You can also leave it empty for auto-detection
 
 
 # a callback that prints every new value to the console
 def new_temp(r):
     print (r.value)
+
 
 connection.watch(obd.commands.COOLANT_TEMP, callback=new_temp)
 connection.start()
