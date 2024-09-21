@@ -1,68 +1,33 @@
-import time
-import obd
-import logging
-import os
-from dotenv import load_dotenv
+import can
+import pygame
 
+bus1 = can.interface.Bus('test', interface='virtual')
+bus2 = can.interface.Bus('test', interface='virtual')
 
-load_dotenv()
-log_file = os.getenv('LOG_FILE', '/home/pi/rx8/logs/app.log')
-port = os.getenv('OBD_PORT', None)
+msg1 = can.Message(arbitration_id=0xabcde, data=[1,2,3])
+bus1.send(msg1)
+msg2 = bus2.recv()
 
+# Convert the data payload to a string representation
+data_as_string = ''.join(format(byte, '02x') for byte in msg2.data)
 
-obd.logger.setLevel(obd.logging.DEBUG)
+WINDOW_WIDTH = 800
+WINDOW_HEIGHT = 800
 
+pygame.init()
 
-connection = obd.Async(port)
+screen = pygame.display.set_mode((640, 480))
 
+pygame.display.set_caption(data_as_string)
 
-# a callback that prints every new value to the console
-def new_temp(r):
-    print (r.value)
+sysfont = pygame.font.get_default_font()
+font = pygame.font.SysFont(None, 48)
+img = font.render(f"Temp: {data_as_string}", True, (222,222,222))
 
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
 
-connection.watch(obd.commands.COOLANT_TEMP, callback=new_temp)
-connection.start()
-
-# the callback will now be fired upon receipt of new values
-
-time.sleep(60)
-connection.stop()
-
-
-
-# Flask-related code is commented out for now
-
-
-# app = Flask(__name__)
-
-
-# @app.route('/')
-# def index():
-#     current_time = time.time()
-
-#     if connection is None or connection.status() == obd.OBDStatus.NOT_CONNECTED:
-#         refresh=60
-#         logging.warning("No OBDII connection")
-#         temp_water_value = "No OBDII connection"
-#     else:
-#         refresh=3
-#         response = connection.query(obd.commands.COOLANT_TEMP)
-
-#         # Check if the response is valid and contains data
-#         if response.is_null():
-#             temp_water_value = "No Data (Car Off)"
-#         else:
-#             temp_water_value = response.value  # Extract the actual value
-
-#     return render_template(
-#         'index.html',
-#         refresh=refresh,
-#         temp_water=temp_water_value,
-#         current_time=current_time
-#     )
-
-
-# if __name__ == '__main__':
-#     logging.info("Starting server")
-#     app.run(debug=False)
+    screen.blit(img, (40, 20))
+    pygame.display.update()

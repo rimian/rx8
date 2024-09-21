@@ -1,4 +1,15 @@
-obd
+blinker==1.8.2
+click==8.1.7
+Flask==3.0.3
+itsdangerous==2.2.0
+Jinja2==3.1.4
+MarkupSafe==2.1.5
+msgpack==1.0.8
+packaging==24.1
 Pint==0.20.1
+pygame==2.6.0
 pyserial==3.5
-python-dotenv==1.0.1
+python-can==4.4.2
+typing_extensions==4.12.2
+Werkzeug==3.0.4
+wrapt==1.16.0
