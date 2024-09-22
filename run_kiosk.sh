@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 cd /home/pi/rx8 2>&1 &
 source /home/pi/.venv/rx8/bin/activate 2>&1 &
