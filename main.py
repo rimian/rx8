@@ -12,11 +12,14 @@ msg2 = bus2.recv()
 data_as_string = ''.join(format(byte, '02x') for byte in msg2.data)
 
 WINDOW_WIDTH = 800
-WINDOW_HEIGHT = 800
+WINDOW_HEIGHT = 600
 
 pygame.init()
 
-screen = pygame.display.set_mode((640, 480))
+screen = pygame.display.set_mode(
+    (WINDOW_WIDTH, WINDOW_HEIGHT),
+    pygame.FULLSCREEN
+)
 
 pygame.display.set_caption(data_as_string)
 
