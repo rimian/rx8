@@ -4,7 +4,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 WINDOW_WIDTH = 800
-WINDOW_HEIGHT = 600
+WINDOW_HEIGHT = 480
 
 logging.basicConfig(
     filename='rx8.log',
