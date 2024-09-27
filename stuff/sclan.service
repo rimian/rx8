@@ -1,0 +1,12 @@
+[Unit]
+Description=Set up slcan interface at boot
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/slcan_attach -f -s6 -o /dev/ttyACM0
+ExecStartPost=/usr/bin/slcand -S 115200 /dev/ttyACM0 can0
+ExecStartPost=/sbin/ifconfig can0 up
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
