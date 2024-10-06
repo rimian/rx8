@@ -1,5 +1,6 @@
 import pygame
 import logging
+import obd
 logger = logging.getLogger(__name__)
 
 WINDOW_WIDTH = 800
@@ -10,10 +11,16 @@ logging.basicConfig(
     level=logging.INFO
 )
 
+connection = obd.Async()
+connection.watch(obd.commands.COOLANT_TEMP)
+connection.watch(obd.commands.OIL_TEMP)
+connection.start()
+
 def main():
     logger.info('Start')
 
-    data_as_string = '3'
+    water_temp = connection.query(obd.commands.COOLANT_TEMP)
+    oil_temp = connection.query(obd.commands.OIL_TEMP)
 
     pygame.init()
 
@@ -26,16 +33,17 @@ def main():
 
     font = pygame.font.SysFont(None, 48)
 
-    img_water_temp = font.render(f"Water temp: {data_as_string}", True, (222,222,222))
-    img_oil_pressure = font.render(f"Oil Pressure: {data_as_string}", True, (222,222,222))
+    img_water_temp = font.render(f"Water Temp: {water_temp}", True, (222,222,222))
+    img_oil_temp = font.render(f"Oil Temp: {oil_temp}", True, (222,222,222))
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                connection.stop()
                 pygame.quit()
 
         screen.blit(img_water_temp, (40, 20))
-        screen.blit(img_oil_pressure, (80, 20))
+        screen.blit(img_oil_temp, (80, 20))
 
         pygame.display.update()
 
