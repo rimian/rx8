@@ -1,4 +1,3 @@
-import can
 import pygame
 import logging
 logger = logging.getLogger(__name__)
@@ -11,18 +10,10 @@ logging.basicConfig(
     level=logging.INFO
 )
 
-bus1 = can.interface.Bus('test', interface='virtual')
-bus2 = can.interface.Bus('test', interface='virtual')
-
 def main():
     logger.info('Start')
 
-    msg1 = can.Message(arbitration_id=0xabcde, data=[1,2,3])
-    bus1.send(msg1)
-    msg2 = bus2.recv()
-
-    # Convert the data payload to a string representation
-    data_as_string = ''.join(format(byte, '02x') for byte in msg2.data)
+    data_as_string = '3'
 
     pygame.init()
 
@@ -31,19 +22,21 @@ def main():
         pygame.FULLSCREEN
     )
 
-    pygame.display.set_caption(data_as_string)
+    pygame.display.set_caption('car yo')
 
-    sysfont = pygame.font.get_default_font()
     font = pygame.font.SysFont(None, 48)
-    img = font.render(f"Temp: {data_as_string}", True, (222,222,222))
 
-    logger.info('Do the while loop')
+    img_water_temp = font.render(f"Water temp: {data_as_string}", True, (222,222,222))
+    img_oil_pressure = font.render(f"Oil Pressure: {data_as_string}", True, (222,222,222))
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
 
-        screen.blit(img, (40, 20))
+        screen.blit(img_water_temp, (40, 20))
+        screen.blit(img_oil_pressure, (80, 20))
+
         pygame.display.update()
 
 
