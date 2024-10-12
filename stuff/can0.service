@@ -1,0 +1,14 @@
+[Unit]
+Description=Setup CAN interface can0
+Wants=network.target
+Before=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/ip link set can0 up type can bitrate 500000
+ExecStartPost=/sbin/ifconfig can0 up
+ExecStop=/sbin/ifconfig can0 down
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

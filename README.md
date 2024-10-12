@@ -43,23 +43,36 @@ dpms = false
 kiosk = /home/pi/rx8/run_kiosk.sh
 ```
 
-## Adding the services
+## Can Bus
+
+I bought a RS485 Can Hat for the Rasperry PI.
+
+Add the following lines to /boot/firmware/config.txt
 
 ```
-sudo cp obd2-bind.service /etc/systemd/system/obd2-bind.service
-sudo cp kiosk-server.service /etc/systemd/system/kiosk-server.service
+dtparam=spi=on
+dtoverlay=mcp2515-can0,oscillator=12000000,interrupt=25,spimaxfrequency=2000000
 ```
 
-You'll need to edit those services if your path and username are different.
+## Enabling CAN0 Interface on Boot using systemd
 
-Start:
+To ensure your Raspberry Pi automatically boots with the `can0` interface enabled, follow these steps to create a `systemd` service.
 
-````
-sudo systemctl daemon-reload
-sudo systemctl enable obd2-bind.service
-sudo systemctl enable kiosk-server.service
-sudo systemctl start obd2-bind.service
-sudo systemctl start kiosk-server.service
+### Create the systemd Service File
+
+Copy the file `stuff/can0.service` to `/etc/systemd/system/can0.service`
+
+Enable and Start the Service:
+
+```bash
+sudo systemctl enable can0.service
+sudo systemctl start can0.service
+```
+
+After the reboot, check if the can0 interface is up and running by using:
+
+```bash
+ip link show can0
 ```
 
 ## Fitting a new screen
