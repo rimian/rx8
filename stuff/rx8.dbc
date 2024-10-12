@@ -56,7 +56,7 @@ BO_ 513 PCM: 8 XXX
 
 BO_ 1056 PCM: 7 XXX
  SG_ ENG_TMP : 0|8@0+ (1,0) [0|255] "C" XXX
- SG_ OIL_PRESSURE : 40|1@0+ (1,0) [0|1] "" XXX
+ SG_ OIL_PRESSURE : 32|8@0+ (1,0) [0|255] ""
  SG_ CEL_EN : 46|1@0+ (1,0) [0|1] "" XXX
  SG_ CEL_FLASH_EN : 47|1@0+ (1,0) [0|1] "" XXX
  SG_ CLNT_EN : 49|1@0+ (1,0) [0|1] "" XXX
