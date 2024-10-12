@@ -35,10 +35,10 @@ BS_:
 
 BU_: XXX
 
-BO_ 201 PCM: 8 XXX
+BO_ 513 PCM: 8 XXX
  SG_ RPM : 0|12@0+ (1,0) [0|13000] "rpm" XXX
 
-BO_ 420 PCM: 8 XXX
+BO_ 1056 PCM: 8 XXX
  SG_ ENG_TMP : 0|8@0+ (1,0) [0|255] "C" XXX
  SG_ CEL_EN : 46|1@0+ (1,0) [0|1] "" XXX
  SG_ CEL_FLASH_EN : 47|1@0+ (1,0) [0|1] "" XXX
@@ -46,10 +46,9 @@ BO_ 420 PCM: 8 XXX
  SG_ BATT_EN : 54|1@0+ (1,0) [0|1] "" XXX
  SG_ OIL_EN : 55|1@0+ (1,0) [0|1] "" XXX
 
-
-CM_ SG_ 201 RPM "Cannot work out conversion factor atm";
-CM_ SG_ 420 CEL_EN "Enable solid check engine lamp";
-CM_ SG_ 420 CEL_FLASH_EN "Enable blinking check engine lamp";
-CM_ SG_ 420 CLNT_EN "Enable coolant light";
-CM_ SG_ 420 BATT_EN "Enable battery light";
-CM_ SG_ 420 OIL_EN "Enable oil pressure light";
+CM_ SG_ 513 RPM "Cannot work out conversion factor atm";
+CM_ SG_ 1056 CEL_EN "Enable solid check engine lamp";
+CM_ SG_ 1056 CEL_FLASH_EN "Enable blinking check engine lamp";
+CM_ SG_ 1056 CLNT_EN "Enable coolant light";
+CM_ SG_ 1056 BATT_EN "Enable battery light";
+CM_ SG_ 1056 OIL_EN "Enable oil pressure light";
