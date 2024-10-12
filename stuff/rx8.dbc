@@ -52,16 +52,14 @@ BO_ 1584 UNKNOWN_1584: 8 XXX
 BO_ 1616 UNKNOWN_1616: 1 XXX
 
 BO_ 513 PCM: 8 XXX
- SG_ RPM : 0|12@0+ (1,0) [0|13000] "rpm" XXX
+    SG_ RPM : 0|12@0+ (1,0) [0|13000] "RPM" XXX
 
-BO_ 1056 PCM: 7 XXX
- SG_ ENG_TMP : 0|8@0+ (1,0) [0|255] "C" XXX
- SG_ OIL_PRESSURE : 32|8@0+ (1,0) [0|255] "" XXX
- SG_ CEL_EN : 46|1@0+ (1,0) [0|1] "" XXX
- SG_ CEL_FLASH_EN : 47|1@0+ (1,0) [0|1] "" XXX
- SG_ CLNT_EN : 49|1@0+ (1,0) [0|1] "" XXX
- SG_ BATT_EN : 54|1@0+ (1,0) [0|1] "" XXX
- SG_ OIL_EN : 55|1@0+ (1,0) [0|1] "" XXX
+BO_ 1056 PCM: 7 Vector__XXX
+    SG_ CoolantTemp : 0|8@1+ (1,0) [0|255] "degC" Vector__XXX
+    SG_ Unknown : 8|8@1+ (0,0) [0|255] "" Vector__XXX
+    SG_ DummyOilPressure : 32|1@1+ (0,0) [0|1] "On" Vector__XXX
+
+VAL_ 1056 DummyOilPressure 0 "Off" 1 "On";
 
 CM_ SG_ 513 RPM "Cannot work out conversion factor atm";
 CM_ SG_ 1056 CEL_EN "Enable solid check engine lamp";
