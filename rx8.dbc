@@ -1,0 +1,69 @@
+VERSION ""
+
+
+NS_ :
+    NS_DESC_
+    CM_
+    BA_DEF_
+    BA_
+    VAL_
+    CAT_DEF_
+    CAT_
+    FILTER
+    BA_DEF_DEF_
+    EV_DATA_
+    ENVVAR_DATA_
+    SGTYPE_
+    SGTYPE_VAL_
+    BA_DEF_SGTYPE_
+    BA_SGTYPE_
+    SIG_TYPE_REF_
+    VAL_TABLE_
+    SIG_GROUP_
+    SIG_VALTYPE_
+    SIGTYPE_VALTYPE_
+    BO_TX_BU_
+    BA_DEF_REL_
+    BA_REL_
+    BA_DEF_DEF_REL_
+    BU_SG_REL_
+    BU_EV_REL_
+    BU_BO_REL_
+    SG_MUL_VAL_
+
+BS_:
+
+BU_: XXX
+
+
+BO_ 71 KCM: 8 XXX "Keyless Entry"
+BO_ 129 SAS: 4 XXX "Steering Angle"
+BO_ 513 PCM: 8 XXX
+    SG_ RPM : 0|12@0+ (1,0) [0|13000] "RPM" XXX
+BO_ 515 UNKNOWN_515: 7 XXX
+BO_ 516 UNKNOWN_516: 1 XXX
+BO_ 530 ABSDSC: 7 XXX
+BO_ 533 UNKNOWN_533: 8 XXX
+BO_ 561 UNKNOWN_561: 5 XXX
+BO_ 576 UNKNOWN_576: 8 XXX
+BO_ 592 UNKNOWN_592: 8 XXX
+BO_ 650 UNKNOWN_650: 1 XXX
+BO_ 768 EPS: 1 XXX "Steering"
+BO_ 1072 UNKNOWN_1072: 7 XXX
+BO_ 1056 PCM: 7 Vector__XXX
+    SG_ CoolantTemp : 0|8@1+ (1,0) [0|255] "degC" Vector__XXX
+    SG_ Unknown : 8|8@1+ (0,0) [0|255] "" Vector__XXX
+    SG_ OilPressure : 32|1@1+ (0,0) [0|1] "On" Vector__XXX
+BO_ 1200 UNKNOWN_1200: 8 XXX "Wheel Speed"
+BO_ 1201 UNKNOWN_1201: 8 XXX "Wheel Speed"
+	SG_ FrontLeft : 0|16@1+ (0,0) [0|65025] "km/h" Vector__XXX
+	SG_ FrontRight : 16|16@1+ (0,0) [0|65025] "km/h" Vector__XXX
+	SG_ RearLeft : 32|16@1+ (0,0) [0|65025] "km/h" Vector__XXX
+	SG_ RearRight : 48|16@1+ (0,0) [0|65025] "km/h" Vector__XXX
+BO_ 1216 ODO: 1 XXX
+BO_ 1584 UNKNOWN_1584: 8 XXX
+BO_ 1616 UNKNOWN_1616: 1 XXX
+
+
+VAL_ 1056 OilPressure 0 "Off" 1 "On";
+CM_ SG_ OilPressure "This is a dummy guage. It's either on or off"
