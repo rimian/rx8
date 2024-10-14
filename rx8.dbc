@@ -36,8 +36,8 @@ BS_:
 BU_: XXX
 
 
-BO_ 71 KCM: 8 XXX "Keyless Entry"
-BO_ 129 SAS: 4 XXX "Steering Angle"
+BO_ 71 Key: 8 XXX
+BO_ 129 SAS: 4 XXX
 BO_ 513 PCM: 8 XXX
     SG_ RPM : 0|12@0+ (1,0) [0|13000] "RPM" XXX
 BO_ 515 UNKNOWN_515: 7 XXX
@@ -48,18 +48,18 @@ BO_ 561 UNKNOWN_561: 5 XXX
 BO_ 576 UNKNOWN_576: 8 XXX
 BO_ 592 UNKNOWN_592: 8 XXX
 BO_ 650 UNKNOWN_650: 1 XXX
-BO_ 768 EPS: 1 XXX "Steering"
+BO_ 768 EPS: 1 XXX
 BO_ 1072 UNKNOWN_1072: 7 XXX
-BO_ 1056 PCM: 7 Vector__XXX
-    SG_ CoolantTemp : 0|8@1+ (1,0) [0|255] "degC" Vector__XXX
-    SG_ Unknown : 8|8@1+ (0,0) [0|255] "" Vector__XXX
-    SG_ OilPressure : 32|1@1+ (0,0) [0|1] "On" Vector__XXX
-BO_ 1200 UNKNOWN_1200: 8 XXX "Wheel Speed"
-BO_ 1201 UNKNOWN_1201: 8 XXX "Wheel Speed"
-	SG_ FrontLeft : 0|16@1+ (0,0) [0|65025] "km/h" Vector__XXX
-	SG_ FrontRight : 16|16@1+ (0,0) [0|65025] "km/h" Vector__XXX
-	SG_ RearLeft : 32|16@1+ (0,0) [0|65025] "km/h" Vector__XXX
-	SG_ RearRight : 48|16@1+ (0,0) [0|65025] "km/h" Vector__XXX
+BO_ 1056 PCM: 7 XXX
+    SG_ CoolantTemp : 0|8@1+ (1,0) [0|255] "degC" XXX
+    SG_ Unknown : 8|8@1+ (0,0) [0|255] "" XXX
+    SG_ OilPressure : 32|1@1+ (0,0) [0|1] "On" XXX
+BO_ 1200 UNKNOWN_1200: 8 XXX
+BO_ 1201 UNKNOWN_1201: 8 XXX
+	SG_ FrontLeft : 0|16@1+ (0,0) [0|65025] "km/h" XXX
+	SG_ FrontRight : 16|16@1+ (0,0) [0|65025] "km/h" XXX
+	SG_ RearLeft : 32|16@1+ (0,0) [0|65025] "km/h" XXX
+	SG_ RearRight : 48|16@1+ (0,0) [0|65025] "km/h" XXX
 BO_ 1216 ODO: 1 XXX
 BO_ 1584 UNKNOWN_1584: 8 XXX
 BO_ 1616 UNKNOWN_1616: 1 XXX
