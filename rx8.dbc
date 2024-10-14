@@ -66,4 +66,3 @@ BO_ 1616 UNKNOWN_1616: 1 XXX
 
 
 VAL_ 1056 OilPressure 0 "Off" 1 "On";
-CM_ SG_ OilPressure "This is a dummy guage. It's either on or off"
