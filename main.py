@@ -1,52 +1,36 @@
-import pygame
-import logging
-import obd
-logger = logging.getLogger(__name__)
+import can
+import cantools
+import sys
 
-WINDOW_WIDTH = 800
-WINDOW_HEIGHT = 480
+# Load the DBC file
+db = cantools.database.load_file('rx8.dbc')
 
-logging.basicConfig(
-    filename='rx8.log',
-    level=logging.INFO
-)
+# Set up the CAN bus to read from can0
+can_interface = 'can0'
+bus = can.interface.Bus(channel=can_interface, interface='socketcan')
 
-connection = obd.Async()
-connection.watch(obd.commands.COOLANT_TEMP)
-connection.watch(obd.commands.OIL_TEMP)
-connection.start()
+print("Listening for CAN messages on can0...")
 
-def main():
-    logger.info('Start')
-
-    water_temp = connection.query(obd.commands.COOLANT_TEMP)
-    oil_temp = connection.query(obd.commands.OIL_TEMP)
-
-    pygame.init()
-
-    screen = pygame.display.set_mode(
-        (WINDOW_WIDTH, WINDOW_HEIGHT),
-        pygame.FULLSCREEN
-    )
-
-    pygame.display.set_caption('car yo')
-
-    font = pygame.font.SysFont(None, 48)
-
-    img_water_temp = font.render(f"Water Temp: {water_temp}", True, (222,222,222))
-    img_oil_temp = font.render(f"Oil Temp: {oil_temp}", True, (222,222,222))
-
+# Read and decode CAN messages in real-time
+try:
     while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                connection.stop()
-                pygame.quit()
+        # Receive a CAN message
+        message = bus.recv()
+        can_id = message.arbitration_id
+        data = message.data
 
-        screen.blit(img_water_temp, (40, 20))
-        screen.blit(img_oil_temp, (80, 20))
+        print(can_id)
 
-        pygame.display.update()
+        # # Try to decode the message using the DBC file
+        # try:
+        #     decoded_message = db.decode_message(can_id, data)
+        #     # Print the decoded message in place without scrolling
+        #     sys.stdout.write(f'\rDecoded CAN Message: {decoded_message}')
+        #     sys.stdout.flush()
+        # except (KeyError, cantools.database.errors.DecodeError) as e:
+        #     # If message can't be decoded, print a placeholder
+        #     sys.stdout.write(f'\rUnknown CAN ID: {can_id:#x}, Data: {data.hex()}')
+        #     sys.stdout.flush()
 
-
-if __name__ == '__main__':
-    main()
+except KeyboardInterrupt:
+    print("\nStopped listening to CAN bus.")
