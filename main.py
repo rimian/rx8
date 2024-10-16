@@ -20,13 +20,14 @@ try:
         message = bus.recv()
         can_id = message.arbitration_id
         data = message.data
+        timestamp = message.timestamp
 
         # Try to decode the message using the DBC file
         try:
             if (can_id == water_temp):
                 decoded_message = db.decode_message(can_id, data)
                 # Print the decoded message in place without scrolling
-                sys.stdout.write(f'\rDecoded CAN Message: {decoded_message}')
+                sys.stdout.write(f'\rTimestamp: {timestamp} Data: {decoded_message}')
                 sys.stdout.flush()
         except (KeyError, cantools.database.errors.DecodeError):
             # If message can't be decoded, print a placeholder
