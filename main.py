@@ -10,6 +10,7 @@ can_interface = 'can0'
 bus = can.interface.Bus(channel=can_interface, interface='socketcan')
 
 print("Listening for CAN messages on can0...")
+print("")
 
 water_temp = 1056
 
