@@ -1,6 +1,20 @@
 import can
 import cantools
+import logging
 import sys
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('/var/log/rx8/main.log'),
+        logging.StreamHandler(sys.stdout)
+    ]
+)
+
+
+logger = logging.getLogger(__name__)
 
 # Load the DBC file
 db = cantools.database.load_file('rx8.dbc')
