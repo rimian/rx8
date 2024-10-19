@@ -12,4 +12,4 @@ fi
 
 # Activate the virtual environment and run Python app
 source /home/pi/.venv/bin/activate >> "$LOG_FILE" 2>&1
-$(which python3) $MAIN_SCRIPT >> "$LOG_FILE" 2>&1 &
+$(which python3) $MAIN_SCRIPT
