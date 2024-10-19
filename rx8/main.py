@@ -50,4 +50,4 @@ try:
             sys.stdout.flush()
 
 except KeyboardInterrupt:
-    print("\nStopped listening to CAN bus.")
+    logger.info('KeyboardInterrupt')
