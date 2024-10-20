@@ -16,8 +16,12 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-# Load the DBC file
-db = cantools.database.load_file('rx8.dbc')
+
+try:
+    db = cantools.database.load_file('rx8.dbc')
+except FileNotFoundError:
+    logger.error('FileNotFoundError: dbc file not found.')
+
 
 # Set up the CAN bus to read from can0
 can_interface = 'can0'
