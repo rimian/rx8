@@ -23,6 +23,7 @@ sudo apt-get install netcat-openbsd
 * SSH into your Raspberry PI.
 * In the home directory checkout this repo.
 * Add the auto start section of wayfire.ini to your config
+* pip install git+https://github.com/rimian/rx8.git
 
 ## Pulling things apart
 
