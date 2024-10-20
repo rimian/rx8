@@ -1,26 +1,32 @@
 import can
 import cantools
+import os
 import logging
-import sys
+
+
+# Get the current directory of the script
+project_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Define a relative log directory within the project
+log_file = os.path.join(project_dir, 'logs', 'rx8.log')
+
+# Ensure the log directory exists
+log_dir = os.path.dirname(log_file)
+os.makedirs(log_dir, exist_ok=True)
 
 
 logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    level=logging.DEBUG,
     handlers=[
-        logging.FileHandler('/var/log/rx8/main.log'),
-        logging.StreamHandler(sys.stdout)
+        logging.FileHandler(log_file),
+        logging.StreamHandler()  # Also print logs to console
     ]
 )
-
-
-logger = logging.getLogger(__name__)
-
 
 try:
     db = cantools.database.load_file('rx8.dbc')
 except FileNotFoundError:
-    logger.error('FileNotFoundError: dbc file not found.')
+    logging.error('FileNotFoundError: dbc file not found.')
 
 
 # Set up the CAN bus to read from can0
@@ -54,4 +60,4 @@ try:
             sys.stdout.flush()
 
 except KeyboardInterrupt:
-    logger.info('KeyboardInterrupt')
+    logging.info('KeyboardInterrupt')
