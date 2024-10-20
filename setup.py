@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='rx8',
-    version='0.1.1',
+    version='0.1.2',
     description='RX8 project for CAN bus interaction',
     author='Rimian Perkins',
     license='MIT',
